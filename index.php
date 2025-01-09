@@ -1,54 +1,43 @@
-<?php
-// Database connection
-$dsn = 'mysql:host=localhost;dbname=game_collection;charset=utf8mb4';
-$username = 'root';
-$password = '';
-
-try {
-    $pdo = new PDO($dsn, $username, $password, [
-        PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-    ]);
-} catch (PDOException $e) {
-    die("Database connection failed: " . $e->getMessage());
-}
-
-// Fetch all games
-$query = $pdo->query("SELECT * FROM games ORDER BY created_at DESC");
-$games = $query->fetchAll(PDO::FETCH_ASSOC);
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Game Collection</title>
+    <link href="public/tailwind.css" rel="stylesheet">
+    <title>Game Collection</title>
 </head>
-<body>
-    <h1>My Game Collection</h1>
-    <a href="upload_form.php">Upload Games via CSV</a> | <a href="add_game.php">Add a Game</a>
-    <table border="1" cellpadding="5">
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Platform</th>
-                <th>Update Number</th>
-                <th>Format</th>
-                <th>Physical</th>
-                <th>Added On</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($games as $game): ?>
-                <tr>
-                    <td><?= htmlspecialchars($game['title']) ?></td>
-                    <td><?= htmlspecialchars($game['platform']) ?></td>
-                    <td><?= htmlspecialchars($game['update_number']) ?></td>
-                    <td><?= htmlspecialchars($game['format']) ?></td>
-                    <td><?= $game['is_physical'] ? 'Yes' : 'No' ?></td>
-                    <td><?= htmlspecialchars($game['created_at']) ?></td>
+<body class="bg-gray-100">
+    <div class="container mx-auto p-6">
+        <h1 class="text-3xl font-bold mb-6">My Game Collection</h1>
+        <table class="table-auto w-full mt-6 border-collapse border border-gray-200">
+            <thead>
+                <tr class="bg-gray-100">
+                    <th class="border px-4 py-2">Title</th>
+                    <th class="border px-4 py-2">Platform</th>
+                    <th class="border px-4 py-2">Update Number</th>
+                    <th class="border px-4 py-2">Format</th>
+                    <th class="border px-4 py-2">Digital Storage</th>
+                    <th class="border px-4 py-2">Physical</th>
+                    <th class="border px-4 py-2">Added On</th>
                 </tr>
-            <?php endforeach; ?>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                <?php
+                require 'db_connection.php';
+                $games = $pdo->query("SELECT * FROM games ORDER BY created_at DESC")->fetchAll();
+                foreach ($games as $game): ?>
+                    <tr class="hover:bg-gray-100">
+                        <td class="border px-4 py-2"><?= htmlspecialchars($game['title']) ?></td>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($game['platform']) ?></td>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($game['update_number']) ?></td>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($game['format']) ?></td>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($game['digital_storage']) ?></td>
+                        <td class="border px-4 py-2"><?= $game['is_physical'] ? 'Yes' : 'No' ?></td>
+                        <td class="border px-4 py-2"><?= htmlspecialchars($game['created_at']) ?></td>
+                    </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 </body>
 </html>

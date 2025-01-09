@@ -1,10 +1,12 @@
 CREATE TABLE games (
     id INT AUTO_INCREMENT PRIMARY KEY,
     title VARCHAR(255) NOT NULL,
-    platform VARCHAR(50) NOT NULL,
+    platform VARCHAR(255) NOT NULL,
     update_number VARCHAR(50),
     format VARCHAR(50),
-    is_physical BOOLEAN NOT NULL DEFAULT 0,
-    created_at DATETIME NOT NULL,
-    updated_at DATETIME NOT NULL
+    is_physical BOOLEAN DEFAULT FALSE,
+    serial_number VARCHAR(255),
+    digital_storage VARCHAR(255),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
