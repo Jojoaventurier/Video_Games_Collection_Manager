@@ -1,3 +1,15 @@
+<?php
+require 'db_connection.php';
+
+// Example: Fetch all games
+$query = $pdo->query("SELECT * FROM games");
+$games = $query->fetchAll(PDO::FETCH_ASSOC);
+
+foreach ($games as $game) {
+    echo $game['title'] . '<br>';
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,10 +34,11 @@
                 </tr>
             </thead>
             <tbody>
+
                 <?php
-                require 'db_connection.php';
-                $games = $pdo->query("SELECT * FROM games ORDER BY created_at DESC")->fetchAll();
-                foreach ($games as $game): ?>
+                foreach ($games as $game): 
+                ?>
+
                     <tr class="hover:bg-gray-100">
                         <td class="border px-4 py-2"><?= htmlspecialchars($game['title']) ?></td>
                         <td class="border px-4 py-2"><?= htmlspecialchars($game['platform']) ?></td>
