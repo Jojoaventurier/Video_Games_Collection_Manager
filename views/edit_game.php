@@ -1,5 +1,4 @@
 <?php
-include '../partials/header.php';
 require '../db_connection.php';
 
 if (isset($_GET['id'])) {
@@ -26,4 +25,3 @@ if (isset($_GET['id'])) {
         <button type="submit" class="btn btn-primary">Save Changes</button>
     </form>
 </div>
-<?php include '../partials/footer.php'; ?>

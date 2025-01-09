@@ -1,4 +1,4 @@
-<?php include '../partials/header.php'; ?>
+
 <div class="container mx-auto mt-10">
     <h2 class="text-2xl font-bold">Add a New Game</h2>
     <form method="POST" action="../operations.php" class="space-y-4">
@@ -16,4 +16,3 @@
         <button type="submit" class="btn btn-primary">Add Game</button>
     </form>
 </div>
-<?php include '../partials/footer.php'; ?>

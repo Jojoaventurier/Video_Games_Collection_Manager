@@ -1,5 +1,4 @@
 <?php
-include '../partials/header.php';
 require '../db_connection.php';
 
 $query = $pdo->query("SELECT * FROM games ORDER BY title ASC");
@@ -39,4 +38,3 @@ $games = $query->fetchAll(PDO::FETCH_ASSOC);
         </tbody>
     </table>
 </div>
-<?php include '../partials/footer.php'; ?>
