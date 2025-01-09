@@ -1,6 +1,6 @@
 <header class="bg-gray-800 text-white shadow">
     <div class="container mx-auto flex justify-between items-center py-4 px-6">
-        <a href="/index.php" class="text-xl font-bold hover:text-gray-300">
+        <a href="index.php?page=home" class="text-xl font-bold hover:text-gray-300">
             🎮 Video Game Collection
         </a>
         <nav class="space-x-4">
