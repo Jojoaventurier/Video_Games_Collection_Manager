@@ -16,5 +16,10 @@
     "url": "https://github.com/Jojoaventurier/Video_Games_Collection_Manager/issues"
   },
   "homepage": "https://github.com/Jojoaventurier/Video_Games_Collection_Manager#readme",
-  "description": ""
+  "description": "",
+  "devDependencies": {
+    "autoprefixer": "^10.4.20",
+    "postcss": "^8.4.49",
+    "tailwindcss": "^3.4.17"
+  }
 }
