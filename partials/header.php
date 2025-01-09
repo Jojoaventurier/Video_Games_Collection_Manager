@@ -4,9 +4,9 @@
             🎮 Video Game Collection
         </a>
         <nav class="space-x-4">
-            <a href="/views/home.php" class="text-sm hover:text-gray-300">Home</a>
-            <a href="/views/add_game.php" class="text-sm hover:text-gray-300">Add Game</a>
-            <a href="/views/game_list.php" class="text-sm hover:text-gray-300">Game List</a>
+            <a href="index.php?page=home" class="text-sm hover:text-gray-300">Home</a>
+            <a href="index.php?page=add_game.php" class="text-sm hover:text-gray-300">Add Game</a>
+            <a href="index.php?page=game_list.php" class="text-sm hover:text-gray-300">Game List</a>
         </nav>
     </div>
 </header>

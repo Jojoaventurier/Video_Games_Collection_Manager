@@ -24,7 +24,7 @@ $content = ob_get_clean(); // Get the page content
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="public/tailwind.css" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
     <title>Game Collection</title>
 </head>
 <body class="bg-gray-100">
