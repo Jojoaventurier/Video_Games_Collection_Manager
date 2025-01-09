@@ -9,7 +9,7 @@
 <body class="bg-gray-100">
     <div class="container mx-auto p-6">
         <h1 class="text-3xl font-bold mb-6">Add a Game</h1>
-        <form action="process_add_game.php" method="post" class="space-y-4 bg-white p-6 rounded shadow">
+        <form action="add_game.php" method="post" class="space-y-4 bg-white p-6 rounded shadow">
             <div>
                 <label class="block text-sm font-medium text-gray-700">Title</label>
                 <input type="text" name="title" required class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring focus:ring-blue-200">
