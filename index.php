@@ -1,13 +1,22 @@
 <?php
+// Include database connection
 require 'db_connection.php';
 
-// Example: Fetch all games
-$query = $pdo->query("SELECT * FROM games");
-$games = $query->fetchAll(PDO::FETCH_ASSOC);
+// Determine which page to load (default: home)
+$page = isset($_GET['page']) ? $_GET['page'] : 'home';
 
-foreach ($games as $game) {
-    echo $game['title'] . '<br>';
+// Define the allowed pages
+$allowed_pages = ['home', 'add_game', 'game_list'];
+
+// Sanitize and validate the page
+if (!in_array($page, $allowed_pages)) {
+    $page = 'home'; // Default to home if the page is invalid
 }
+
+// Include the selected page
+ob_start(); // Start output buffering
+include "views/{$page}.php";
+$content = ob_get_clean(); // Get the page content
 ?>
 
 <!DOCTYPE html>
@@ -19,38 +28,12 @@ foreach ($games as $game) {
     <title>Game Collection</title>
 </head>
 <body class="bg-gray-100">
+    <?php include 'partials/header.php'; ?>
+
     <div class="container mx-auto p-6">
-        <h1 class="text-3xl font-bold mb-6">My Game Collection</h1>
-        <table class="table-auto w-full mt-6 border-collapse border border-gray-200">
-            <thead>
-                <tr class="bg-gray-100">
-                    <th class="border px-4 py-2">Title</th>
-                    <th class="border px-4 py-2">Platform</th>
-                    <th class="border px-4 py-2">Update Number</th>
-                    <th class="border px-4 py-2">Format</th>
-                    <th class="border px-4 py-2">Digital Storage</th>
-                    <th class="border px-4 py-2">Physical</th>
-                    <th class="border px-4 py-2">Added On</th>
-                </tr>
-            </thead>
-            <tbody>
-
-                <?php
-                foreach ($games as $game): 
-                ?>
-
-                    <tr class="hover:bg-gray-100">
-                        <td class="border px-4 py-2"><?= htmlspecialchars($game['title']) ?></td>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($game['platform']) ?></td>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($game['update_number']) ?></td>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($game['format']) ?></td>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($game['digital_storage']) ?></td>
-                        <td class="border px-4 py-2"><?= $game['is_physical'] ? 'Yes' : 'No' ?></td>
-                        <td class="border px-4 py-2"><?= htmlspecialchars($game['created_at']) ?></td>
-                    </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+        <?= $content; // Display the selected page's content ?>
     </div>
+
+    <?php include 'partials/footer.php'; ?>
 </body>
 </html>
