@@ -1,14 +1,22 @@
 <?php
-require '../db_connection.php';
+require './db_connection.php';
 
 $query = $pdo->query("SELECT * FROM games ORDER BY title ASC");
 $games = $query->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <div class="container mx-auto mt-10">
     <h2 class="text-2xl font-bold mb-5">Your Game Collection</h2>
-    <table class="table-auto w-full">
+
+    <?php if (empty($games)): ?>
+    <tr>
+        <td colspan="6" class="text-center py-4">No games found. Add some to your collection!</td>
+    </tr>
+<?php endif; ?>
+
+
+    <table class="table-auto w-full overflow-x-auto block md:table">
         <thead>
-            <tr>
+        <tr class="hover:bg-gray-100">
                 <th class="px-4 py-2">Title</th>
                 <th class="px-4 py-2">Platform</th>
                 <th class="px-4 py-2">Update Number</th>
@@ -31,7 +39,7 @@ $games = $query->fetchAll(PDO::FETCH_ASSOC);
                         <input type="hidden" name="id" value="<?= $game['id']; ?>">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
-                    <a href="edit_game.php?id=<?= $game['id']; ?>" class="btn btn-secondary">Edit</a>
+                    <a href="index.php?page=edit_game&id=<?= $game['id']; ?>" class="btn btn-secondary">Edit</a>
                 </td>
             </tr>
             <?php endforeach; ?>
