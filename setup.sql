@@ -6,7 +6,7 @@ CREATE TABLE games (
     format VARCHAR(50),
     is_physical BOOLEAN DEFAULT FALSE,
     serial_number VARCHAR(255),
-    digital_storage VARCHAR(255),
+    storage_location VARCHAR(255),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );

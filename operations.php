@@ -12,6 +12,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $format = $_POST['format'];
         $storage_location = $_POST['storage_location'];
 
+        // Use prepared statements to prevent SQL injection
         $stmt = $pdo->prepare("
             INSERT INTO games (title, platform, update_number, format, storage_location) 
             VALUES (:title, :platform, :update_number, :format, :storage_location)
@@ -23,9 +24,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':format' => $format,
             ':storage_location' => $storage_location,
         ]);
-        header('Location: views/game_list.php');
+
+        // Redirect to the game list page using the routing mechanism
+        header('Location: index.php?page=game_list');
         exit;
     }
+}
 
     // Edit a game
     if ($operation === 'edit_game') {
@@ -50,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             ':format' => $format,
             ':storage_location' => $storage_location,
         ]);
-        header('Location: views/game_list.php');
+        header('Location: index.php?page=game_list');
         exit;
     }
 
@@ -60,7 +64,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $stmt = $pdo->prepare("DELETE FROM games WHERE id = :id");
         $stmt->execute([':id' => $id]);
-        header('Location: views/game_list.php');
+        header('Location: index.php?page=game_list');
         exit;
     }
-}

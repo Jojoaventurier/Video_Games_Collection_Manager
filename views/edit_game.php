@@ -1,5 +1,5 @@
 <?php
-require '../db_connection.php';
+require './db_connection.php';
 
 if (isset($_GET['id'])) {
     $stmt = $pdo->prepare("SELECT * FROM games WHERE id = :id");
