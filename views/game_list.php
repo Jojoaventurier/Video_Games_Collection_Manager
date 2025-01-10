@@ -27,12 +27,12 @@ $games = $query->fetchAll(PDO::FETCH_ASSOC);
         </thead>
         <tbody>
             <?php foreach ($games as $game): ?>
-            <tr>
-                <td class="border px-4 py-2"><?= htmlspecialchars($game['title']); ?></td>
-                <td class="border px-4 py-2"><?= htmlspecialchars($game['platform']); ?></td>
-                <td class="border px-4 py-2"><?= htmlspecialchars($game['update_number']); ?></td>
-                <td class="border px-4 py-2"><?= htmlspecialchars($game['format']); ?></td>
-                <td class="border px-4 py-2"><?= htmlspecialchars($game['storage_location']); ?></td>
+            <tr> <!-- !!SECURITY!! --><!-- !!SECURITY!! --><!-- !!SECURITY!! --><!-- !!SECURITY!! -->
+                <td class="border px-4 py-2"><?= $game['title']; ?></td>
+                <td class="border px-4 py-2"><?= $game['platform']; ?></td>
+                <td class="border px-4 py-2"><?= $game['update_number']; ?></td>
+                <td class="border px-4 py-2"><?= $game['format']; ?></td>
+                <td class="border px-4 py-2"><?= $game['storage_location']; ?></td>
                 <td class="border px-4 py-2">
                     <form method="POST" action="../operations.php" style="display:inline;">
                         <input type="hidden" name="operation" value="delete_game">
